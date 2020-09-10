@@ -8,5 +8,10 @@
   <ItemGroup>
     <Folder Include="Tools\" />
     <Folder Include="Tools\Storage\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Options\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
   </ItemGroup>
 </Project>

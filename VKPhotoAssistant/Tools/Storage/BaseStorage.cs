@@ -13,8 +13,6 @@ namespace VKPhotoAssistant.Tools.Storage
 
         private const string Extension = "storage";
 
-        private HashSet<string> HiddenFiles { get; } = new HashSet<string>() { ".DS_Store" };
-
         protected abstract string StorageName { get; }
         #endregion
 
@@ -28,7 +26,8 @@ namespace VKPhotoAssistant.Tools.Storage
                 return new string[] { };
 
             return Directory.GetFiles(GetDirectoryPath())
-                .Where(x => !HiddenFiles.Contains(Path.GetFileName(x)))
+                .Select(x => Path.GetFileNameWithoutExtension(x))
+                .Where(x => !string.IsNullOrEmpty(x))
                 .ToList()
                 .AsReadOnly();
         }
@@ -46,6 +45,8 @@ namespace VKPhotoAssistant.Tools.Storage
                 File.Delete(filename);
             }
         }
+
+        public bool FileExists(string filename) => File.Exists(GetFilePath(filename));
 
         public abstract Task<TValue> ReadFileAsync(string filename);
 
