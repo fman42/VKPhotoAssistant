@@ -1,7 +1,10 @@
-﻿using System;
+﻿using CommandLine;
+
 namespace VKPhotoAssistant.Utilities.VKToken.Options
 {
-    public class RemoveTokenOptions
+    internal class RemoveTokenOptions
     {
+        [Value(0, Required = true)]
+        public int Index { get; set; }
     }
 }
