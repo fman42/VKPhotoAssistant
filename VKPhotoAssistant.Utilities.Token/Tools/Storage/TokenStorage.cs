@@ -2,9 +2,9 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace VKPhotoAssistant.Tools.Storage
+namespace VKPhotoAssistant.Utilities.VKToken.Tools.Storage
 {
-    public class TokenStorage : BaseStorage<string>
+    internal class TokenStorage : BaseStorage<string>
     {
         #region Var
         protected override string StorageName { get; } = "Token";

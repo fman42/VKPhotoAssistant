@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant", "VKPhotoAssistant\VKPhotoAssistant.csproj", "{1BABBC07-82C7-4FF3-A875-6278A24C76A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Interfaces", "VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj", "{31FBB0F4-211A-4349-9275-23F429573F1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.Base", "VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj", "{6C40D09D-D7E4-4162-B821-CAC9215D1584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.VKToken", "VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj", "{7AB942DD-C603-4858-9EBF-646D944728F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +19,17 @@ Global
 		{1BABBC07-82C7-4FF3-A875-6278A24C76A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BABBC07-82C7-4FF3-A875-6278A24C76A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BABBC07-82C7-4FF3-A875-6278A24C76A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31FBB0F4-211A-4349-9275-23F429573F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31FBB0F4-211A-4349-9275-23F429573F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31FBB0F4-211A-4349-9275-23F429573F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31FBB0F4-211A-4349-9275-23F429573F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C40D09D-D7E4-4162-B821-CAC9215D1584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C40D09D-D7E4-4162-B821-CAC9215D1584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C40D09D-D7E4-4162-B821-CAC9215D1584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C40D09D-D7E4-4162-B821-CAC9215D1584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AB942DD-C603-4858-9EBF-646D944728F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB942DD-C603-4858-9EBF-646D944728F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB942DD-C603-4858-9EBF-646D944728F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB942DD-C603-4858-9EBF-646D944728F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VKPhotoAssistant.Tools.Storage
+namespace VKPhotoAssistant.Utilities.VKToken.Tools.Storage
 {
     public abstract class BaseStorage<TValue>
     {
