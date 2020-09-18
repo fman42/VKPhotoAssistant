@@ -27,8 +27,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
                 if (options.Index is { })
                     await GetTokenByIndex(options.Index);
                 else await GetAllTokens();
-            },
-            async (IEnumerable<Error> errors) => Console.WriteLine(HelpMessage)
+            }
         );
 
         private async Task GetAllTokens()

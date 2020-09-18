@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Tools\" />
-    <Folder Include="Tools\Storage\" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj" />
+    <Folder Include="Commands\" />
+    <Folder Include="Options\" />
   </ItemGroup>
 </Project>

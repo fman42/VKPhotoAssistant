@@ -32,8 +32,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
                 } else {
                     Console.WriteLine("Данный файл не существует");
                 }
-            },
-            async (IEnumerable<Error> errors) => Console.WriteLine(HelpMessage)
+            }
         );
         #endregion
     }
