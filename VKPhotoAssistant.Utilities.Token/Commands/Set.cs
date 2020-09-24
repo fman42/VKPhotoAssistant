@@ -10,8 +10,6 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
     internal class Set : BaseCommandParser<SetTokenOptions>, ICommand
     {
         #region Vars
-        public string HelpMessage => "okey";
-
         private TokenStorage Storage { get; }
         #endregion
 

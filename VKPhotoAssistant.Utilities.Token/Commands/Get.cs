@@ -1,5 +1,4 @@
 ﻿using System;
-using CommandLine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
@@ -12,8 +11,6 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
     internal class Get : BaseCommandParser<GetTokenOptions>, ICommand
     {
         #region Vars
-        public string HelpMessage => "vktoken get <file index>";
-
         private TokenStorage Storage { get; }
         #endregion
 
@@ -33,10 +30,10 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         private async Task GetAllTokens()
         {
             foreach (string filename in Storage.GetStorageFiles())
-                Console.WriteLine(await Storage.ReadFileAsync($"{filename}"));
+                Console.WriteLine($"{filename}: " + await Storage.ReadFileAsync($"{filename}"));
         }
 
-        private async Task GetTokenByIndex(int fileIndex)
+        private async Task GetTokenByIndex(int? fileIndex)
         {
             string fileIndexToName = $"{fileIndex}";
             if (Storage.FileExists(fileIndexToName))

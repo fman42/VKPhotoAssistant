@@ -40,10 +40,9 @@ namespace VKPhotoAssistant.Utilities.VKToken.Tools.Storage
 
         public void DeleteFile(string filename)
         {
-            if (File.Exists(GetFilePath(filename)))
-            {
-                File.Delete(filename);
-            }
+            string path = GetFilePath(filename);
+            if (File.Exists(path))
+                File.Delete(path);
         }
 
         public bool FileExists(string filename) => File.Exists(GetFilePath(filename));

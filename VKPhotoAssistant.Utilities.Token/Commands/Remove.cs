@@ -1,5 +1,4 @@
 ﻿using System;
-using CommandLine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
@@ -12,8 +11,6 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
     internal class Remove : BaseCommandParser<RemoveTokenOptions>, ICommand
     {
         #region Vars
-        public string HelpMessage => "vktoken remove <file index>";
-
         private TokenStorage Storage { get; }
         #endregion
 
@@ -29,8 +26,9 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
                 if (Storage.FileExists(fileIndexToName))
                 {
                     Storage.DeleteFile(fileIndexToName);
+                    Console.WriteLine($"Токен с индексом {options.Index} был удален из хранилища");
                 } else {
-                    Console.WriteLine("Данный файл не существует");
+                    Console.WriteLine("Такой токен не существует");
                 }
             }
         );
