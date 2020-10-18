@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.VKToken", "VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj", "{7AB942DD-C603-4858-9EBF-646D944728F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.Album", "VKPhotoAssistant.Utilities.Album\VKPhotoAssistant.Utilities.Album.csproj", "{3E4BD1A2-6611-4ADD-8D0B-7BEB74450B9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +33,9 @@ Global
 		{7AB942DD-C603-4858-9EBF-646D944728F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB942DD-C603-4858-9EBF-646D944728F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB942DD-C603-4858-9EBF-646D944728F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4BD1A2-6611-4ADD-8D0B-7BEB74450B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4BD1A2-6611-4ADD-8D0B-7BEB74450B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4BD1A2-6611-4ADD-8D0B-7BEB74450B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4BD1A2-6611-4ADD-8D0B-7BEB74450B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

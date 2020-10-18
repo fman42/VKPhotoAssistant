@@ -8,8 +8,6 @@ namespace VKPhotoAssistant.Commands
 {
     public class Help : BaseCommandParser<HelpTokenOptions>, ICommand
     {
-        public string HelpMessage => "";
-
         public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, null);
     }
 }

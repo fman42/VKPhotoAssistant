@@ -1,6 +1,8 @@
 ﻿using VKPhotoAssistant.Interfaces.Utility;
 using System;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 
 namespace VKPhotoAssistant.Utilities.Base
@@ -14,6 +16,8 @@ namespace VKPhotoAssistant.Utilities.Base
         #region Methods
         protected ICommand TryCallCommand(string command)
         {
+            var x = Assembly.GetCallingAssembly().GetTypes();
+            
             Type? commandClassName = Assembly.GetCallingAssembly().GetTypes()
                 .FirstOrDefault(x => command.Equals(x.Name, StringComparison.CurrentCultureIgnoreCase)
                    && x.Namespace.Contains(CommandNameSpaceFragment)

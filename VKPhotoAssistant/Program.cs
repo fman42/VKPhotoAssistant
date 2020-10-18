@@ -11,16 +11,18 @@ namespace VKPhotoAssistant
         #region Var
         private static Dictionary<string, Type> UtilitiesDictionary => new Dictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase)
         {
-            { "vk", typeof(Utilities.VKToken.Main)}
+            { "vk", typeof(Utilities.VKToken.Main)},
+            { "album", typeof(Utilities.Album.Main) }
         };
         #endregion
 
         #region Entry Point
         static async Task Main(string[] args)
         {
+            args = new string[] { "album", "get" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
-                await new Main().DefineCommandAsync("--help", args);
+                await new Main().DefineCommandAsync("Help", args);
                 return;
             }
 
