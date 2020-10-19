@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
 using System.Linq;
 
+using VkNet;
+using Microsoft.Extensions.DependencyInjection;
+using VkNet.Model;
+
 namespace VKPhotoAssistant
 {
     public class Program
@@ -19,7 +23,7 @@ namespace VKPhotoAssistant
         #region Entry Point
         static async Task Main(string[] args)
         {
-            args = new string[] { "album", "get" };
+            args = new string[] { "album", "get", "--id", "271683977" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
                 await new Main().DefineCommandAsync("Help", args);
