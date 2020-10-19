@@ -18,7 +18,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 {
     internal class Download : BaseCommandParser<DownloadOptions>, ICommand
     {
-        private VkApi api { get; set; }
+        private VkApi API { get; set; }
 
         private DownloadOptions DownloadOptions { get; set; }
 
@@ -27,6 +27,17 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
+                if (configuration["VKToken"] is null)
+                {
+                    Console.WriteLine("Token is null");
+                    return;
+                }
+
+                API.Authorize(new ApiAuthParams()
+                {
+                    AccessToken = configuration["VKToken"]
+                });
+
                 DownloadOptions = options;
                 DownloadAlbum();
             }
@@ -45,7 +56,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
                 Offset = (ulong) DownloadOptions.Offset
             };
 
-            foreach (Photo photo in api.Photo.Get(getParams))
+            foreach (Photo photo in API.Photo.Get(getParams))
             {
                 Console.WriteLine($"Файл {photo.Id} начал скачиваться в локальное хранилище");
                 Client.DownloadFile(photo.Sizes.Last().Url, Path.Combine(directory, photo.Id + ".jpg"));

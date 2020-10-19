@@ -13,11 +13,22 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 {
     internal class Get : BaseCommandParser<GetTokenOptions>, ICommand
     {
-        private VkApi api { get; set; }
+        private VkApi API { get; set; } = new VkApi();
 
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
+                if (configuration["VKToken"] is null)
+                {
+                    Console.WriteLine("Token is null");
+                    return;
+                }
+
+                API.Authorize(new ApiAuthParams()
+                {
+                    AccessToken = configuration["VKToken"]
+                });
+
                 if (options.AlbumId is null)
                     GetAlbums();
                 else GetAlbumInfoById(options.AlbumId);
@@ -26,7 +37,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
         private void GetAlbums()
         {
-            foreach (PhotoAlbum album in api.Photo.GetAlbums(new PhotoGetAlbumsParams()))
+            foreach (PhotoAlbum album in API.Photo.GetAlbums(new PhotoGetAlbumsParams()))
                 PrintAlbumToConsole(album);
         }
 
@@ -36,7 +47,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
                 AlbumIds = new long[] { (long) albumId }
             };
 
-            foreach (PhotoAlbum album in api.Photo.GetAlbums(requestParams))
+            foreach (PhotoAlbum album in API.Photo.GetAlbums(requestParams))
                 PrintAlbumToConsole(album);
         }
 
