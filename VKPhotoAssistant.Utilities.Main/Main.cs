@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VKPhotoAssistant.Utilities.Main.Commands;
 using VKPhotoAssistant.Interfaces.Utility;
 
-namespace VKPhotoAssistant
+namespace VKPhotoAssistant.Utilities.Main
 {
     public class Main : IUtility
     {

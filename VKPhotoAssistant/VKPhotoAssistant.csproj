@@ -7,5 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Main\VKPhotoAssistant.Utilities.Main.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Album\VKPhotoAssistant.Utilities.Album.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
   </ItemGroup>
 </Project>

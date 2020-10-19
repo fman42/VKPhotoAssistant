@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
+using MainUtility = VKPhotoAssistant.Utilities.Main;
 using System.Linq;
 
 namespace VKPhotoAssistant
@@ -22,7 +23,7 @@ namespace VKPhotoAssistant
             args = new string[] { "album", "download", "271683977" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
-                await new Main().DefineCommandAsync("Help", args);
+                await new MainUtility.Main().DefineCommandAsync("Help", args);
                 return;
             }
 
