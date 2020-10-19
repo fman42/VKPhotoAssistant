@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
     <ProjectReference Include="..\VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj" />
   </ItemGroup>
   <ItemGroup>
