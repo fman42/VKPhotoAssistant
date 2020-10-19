@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace VKPhotoAssistant.Options
+namespace VKPhotoAssistant.Utilities.Main.Options
 {
     public class HelpTokenOptions
     {

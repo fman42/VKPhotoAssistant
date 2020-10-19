@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using VKPhotoAssistant.Utilities.Base;
-using VKPhotoAssistant.Options;
+using VKPhotoAssistant.Utilities.Main.Options;
 
-namespace VKPhotoAssistant.Commands
+namespace VKPhotoAssistant.Utilities.Main.Commands
 {
     public class Help : BaseCommandParser<HelpTokenOptions>, ICommand
     {

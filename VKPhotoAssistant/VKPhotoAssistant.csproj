@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj" />
-    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
-    <ProjectReference Include="..\VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj" />
-    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Album\VKPhotoAssistant.Utilities.Album.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Options\" />
+    <ProjectReference Include="..\VKPhotoAssistant.Utilities.Main\VKPhotoAssistant.Utilities.Main.csproj" />
   </ItemGroup>
 </Project>
