@@ -14,16 +14,6 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
     {
         private VkApi api { get; set; }
 
-        public Get()
-        {
-            api = new VkApi();
-            api.Authorize(new ApiAuthParams()
-            {
-                AccessToken
-                = "00eeec86d76c783b616c1f7659189411a4096ae110eef5bb3f9115007f12f3cbd389cf9dc0d585876a315"
-            });
-        }
-
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
