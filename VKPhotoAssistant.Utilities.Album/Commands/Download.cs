@@ -18,7 +18,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 {
     internal class Download : BaseCommandParser<DownloadOptions>, ICommand
     {
-        private VkApi API { get; set; }
+        private VkApi API { get; set; } = new VkApi();
 
         private DownloadOptions DownloadOptions { get; set; }
 
@@ -27,7 +27,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
-                if (configuration["VKToken"] is null)
+                if (configuration["VKToken"].ToString().Length == 0)
                 {
                     Console.WriteLine("Token is null");
                     return;
@@ -35,7 +35,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
                 API.Authorize(new ApiAuthParams()
                 {
-                    AccessToken = configuration["VKToken"]
+                    AccessToken = "4ab17849f23e71e1c478be84cd07a2f4dfccec2be0db015dd5d0390442e5a966262528143692fb3b0af8d"
                 });
 
                 DownloadOptions = options;

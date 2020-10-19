@@ -24,7 +24,6 @@ namespace VKPhotoAssistant
         {
             IConfiguration configuration = InitConfigurationFile();
 
-            args = new string[] { "album", "get" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
                 await new MainUtility.Main().DefineCommandAsync("Help", args);
@@ -39,7 +38,7 @@ namespace VKPhotoAssistant
         {
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
         }
         #endregion

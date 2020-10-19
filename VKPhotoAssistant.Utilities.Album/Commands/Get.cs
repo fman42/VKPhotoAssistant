@@ -18,7 +18,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
-                if (configuration["VKToken"] is null)
+                if (configuration["VKToken"].ToString().Length == 0)
                 {
                     Console.WriteLine("Token is null");
                     return;

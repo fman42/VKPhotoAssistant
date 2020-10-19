@@ -4,7 +4,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Options
 {
     internal class ApplyTokenOptions
     {
-        [Option('i', "index", Default = null, Required = false)]
-        public int? Index { get; set; }
+        [Value(0, Default = null, Required = true)]
+        public int Index { get; set; }
     }
 }
