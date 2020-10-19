@@ -8,9 +8,9 @@ namespace VKPhotoAssistant.Utilities.Album.Options
         public long AlbumId { get; set; }
 
         [Option("limit", Required = false, Default = 10)]
-        public ulong? Limit { get; set; }
+        public int? Limit { get; set; }
    
         [Option("offset", Required = false, Default = 0)]
-        public ulong? Offset { get; set; }
+        public int? Offset { get; set; }
     }
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using VkNet;
-using VkNet.Model;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
+using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Album.Options;
 using VKPhotoAssistant.Utilities.Base;
-using System.Net;
-using System.IO;
-using System.Linq;
 
 namespace VKPhotoAssistant.Utilities.Album.Commands
 {
@@ -50,8 +50,8 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
             PhotoGetParams getParams = new PhotoGetParams()
             {
                 AlbumId = PhotoAlbumType.Id(DownloadOptions.AlbumId),
-                Count = DownloadOptions.Limit,
-                Offset = DownloadOptions.Offset
+                Count = (ulong) DownloadOptions.Limit,
+                Offset = (ulong) DownloadOptions.Offset
             };
 
             foreach (Photo photo in api.Photo.Get(getParams))

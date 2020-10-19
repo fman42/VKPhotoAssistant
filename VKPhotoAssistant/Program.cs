@@ -19,6 +19,7 @@ namespace VKPhotoAssistant
         #region Entry Point
         static async Task Main(string[] args)
         {
+            args = new string[] { "album", "download", "271683977" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
                 await new Main().DefineCommandAsync("Help", args);
