@@ -12,6 +12,7 @@ using VkNet.Model.RequestParams;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Album.Options;
 using VKPhotoAssistant.Utilities.Base;
+using Microsoft.Extensions.Configuration;
 
 namespace VKPhotoAssistant.Utilities.Album.Commands
 {
@@ -24,7 +25,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private WebClient Client { get; } = new WebClient();
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
+        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
                 DownloadOptions = options;
                 DownloadAlbum();

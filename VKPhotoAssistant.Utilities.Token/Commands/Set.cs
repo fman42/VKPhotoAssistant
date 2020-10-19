@@ -4,6 +4,7 @@ using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Base;
 using VKPhotoAssistant.Utilities.VKToken.Options;
 using VKPhotoAssistant.Utilities.VKToken.Tools.Storage;
+using Microsoft.Extensions.Configuration;
 
 namespace VKPhotoAssistant.Utilities.VKToken.Commands
 {
@@ -18,7 +19,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, SetValueToToken);
+        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args, SetValueToToken);
 
         private async Task SetValueToToken(SetTokenOptions options)
         {

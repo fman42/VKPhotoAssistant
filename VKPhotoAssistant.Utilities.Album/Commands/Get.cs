@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using VkNet;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -15,7 +16,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private VkApi api { get; set; }
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
+        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
             async (options) => {
                 if (options.AlbumId is null)
                     GetAlbums();

@@ -23,7 +23,7 @@ namespace VKPhotoAssistant.Utilities.Album
         {
             ICommand command = TryCallCommand(commandName);
             if (command is { })
-                await command.ExecuteAsync(args);
+                await command.ExecuteAsync(args, Configuration);
         }
         #endregion
     }
