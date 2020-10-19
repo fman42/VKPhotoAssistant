@@ -11,4 +11,10 @@
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Album\VKPhotoAssistant.Utilities.Album.csproj" />
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="appsettings.json" />
+  </ItemGroup>
 </Project>

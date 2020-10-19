@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using VKPhotoAssistant.Interfaces.Utility;
 using MainUtility = VKPhotoAssistant.Utilities.Main;
-using System.Linq;
 
 namespace VKPhotoAssistant
 {
@@ -20,15 +22,25 @@ namespace VKPhotoAssistant
         #region Entry Point
         static async Task Main(string[] args)
         {
-            args = new string[] { "album", "download", "271683977" };
+            IConfiguration configuration = InitConfigurationFile();
+
+            args = new string[] { "album", "get" };
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
                 await new MainUtility.Main().DefineCommandAsync("Help", args);
                 return;
             }
 
-            IUtility utility = (IUtility) Activator.CreateInstance(UtilitiesDictionary[args[0]]);
+            IUtility utility = (IUtility) Activator.CreateInstance(UtilitiesDictionary[args[0]], configuration);
             await utility.DefineCommandAsync(args[1], args.Skip(2));
+        }
+
+        private static IConfiguration InitConfigurationFile()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
         }
         #endregion
     }
