@@ -35,7 +35,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
                 API.Authorize(new ApiAuthParams()
                 {
-                    AccessToken = "4ab17849f23e71e1c478be84cd07a2f4dfccec2be0db015dd5d0390442e5a966262528143692fb3b0af8d"
+                    AccessToken = configuration["VKToken"]
                 });
 
                 DownloadOptions = options;
