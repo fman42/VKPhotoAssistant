@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using VkNet;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VKPhotoAssistant.Storage;
+using VKPhotoAssistant.Interfaces.Utility;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
-using VKPhotoAssistant.Interfaces.Utility;
+using VKPhotoAssistant.Interfaces.Storage;
 using VKPhotoAssistant.Utilities.Album.Options;
 using VKPhotoAssistant.Utilities.Base;
 namespace VKPhotoAssistant.Utilities.Album.Commands
@@ -22,16 +24,25 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
         private WebClient Client { get; } = new WebClient();
 
+        private JsonStorage Storage { get; }
+
+        public Download() => Storage = JsonStorage.GetInstance();
+
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
-                /*API.Authorize(new ApiAuthParams()
-                {
-                    AccessToken = configuration["VKToken"]
-                });*/
+                MainStorage storage = Storage.Read();
 
-                DownloadOptions = options;
-                DownloadAlbum();
+                if (!string.IsNullOrEmpty(storage.CurrentVKToken))
+                {
+                    API.Authorize(new ApiAuthParams()
+                    {
+                        AccessToken = storage.CurrentVKToken
+                    });
+
+                    DownloadOptions = options;
+                    DownloadAlbum();
+                }
             }
         );
 

@@ -7,6 +7,8 @@ using VkNet.Model.RequestParams;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Album.Options;
 using VKPhotoAssistant.Utilities.Base;
+using VKPhotoAssistant.Storage;
+using VKPhotoAssistant.Interfaces.Storage;
 
 namespace VKPhotoAssistant.Utilities.Album.Commands
 {
@@ -14,19 +16,29 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
     {
         private VkApi API { get; set; } = new VkApi();
 
+        private JsonStorage Storage { get; }
+
+        #region Init
+        public Get() => Storage = JsonStorage.GetInstance();
+        #endregion
+
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
-            
-                /*
-                API.Authorize(new ApiAuthParams()
-                {
-                    AccessToken = configuration["VKToken"]
-                });*/
+                MainStorage storage = Storage.Read();
 
-                if (options.AlbumId is null)
-                    GetAlbums();
-                else GetAlbumInfoById(options.AlbumId);
+                if (!string.IsNullOrEmpty(storage.CurrentVKToken))
+                {
+                    API.Authorize(new ApiAuthParams()
+                    {
+                        AccessToken = storage.CurrentVKToken
+                    });
+
+                    if (options.AlbumId is null)
+                        GetAlbums();
+                    else GetAlbumInfoById(options.AlbumId);
+                }
+                else Console.WriteLine("token is null");
             }
         );
 

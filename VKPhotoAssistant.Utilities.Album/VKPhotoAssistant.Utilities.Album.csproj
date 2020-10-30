@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj" />
+    <ProjectReference Include="..\VKPhotoAssistant.Storage\VKPhotoAssistant.Storage.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
