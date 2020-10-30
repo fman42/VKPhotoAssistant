@@ -14,33 +14,34 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 {
     internal class Get : BaseCommandParser<GetTokenOptions>, ICommand
     {
+        #region Vars
         private VkApi API { get; set; } = new VkApi();
 
-        private JsonStorage Storage { get; }
-
-        #region Init
-        public Get() => Storage = JsonStorage.GetInstance();
+        private MainStorage Storage { get; } = JsonStorage.GetInstance().Read();
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
-            async (options) => {
-                MainStorage storage = Storage.Read();
+        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, Action);
 
-                if (!string.IsNullOrEmpty(storage.CurrentVKToken))
-                {
-                    API.Authorize(new ApiAuthParams()
-                    {
-                        AccessToken = storage.CurrentVKToken
-                    });
-
-                    if (options.AlbumId is null)
-                        GetAlbums();
-                    else GetAlbumInfoById(options.AlbumId);
-                }
-                else Console.WriteLine("token is null");
+        private Task Action(GetTokenOptions options)
+        {
+            if (string.IsNullOrEmpty(Storage.CurrentVKToken))
+            {
+                Console.WriteLine("Токен не установлен");
+                return Task.CompletedTask;
             }
-        );
+
+            API.Authorize(new ApiAuthParams()
+            {
+                AccessToken = Storage.CurrentVKToken
+            });
+
+            if (options.AlbumId is null)
+                GetAlbums();
+            else GetAlbumInfoById(options.AlbumId);
+
+            return Task.CompletedTask;
+        }
 
         private void GetAlbums()
         {
