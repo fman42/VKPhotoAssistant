@@ -21,8 +21,6 @@ namespace VKPhotoAssistant
         #region Entry Point
         static void Main(string[] args)
         {
-            args = new string[] { "vk", "apply", "0"};
-
             JsonStorage storage = JsonStorage.GetInstance();
             if (!storage.Exists())
                 storage.Write(new MainStorage());
