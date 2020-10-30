@@ -26,7 +26,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         private Task Action(ApplyTokenOptions options)
         {
             MainStorage storage = Storage.Read();
-            List<string> tokens = storage.VKTokens.ToList();
+            List<string> tokens = storage.VKTokens;
 
             if (tokens.Count() >= options.Index)
             {

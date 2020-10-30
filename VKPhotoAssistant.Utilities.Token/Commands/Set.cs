@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Storage;
 using VKPhotoAssistant.Interfaces.Utility;
@@ -27,12 +26,11 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
             MainStorage storage = Storage.Read();
 
             if (options.TokenIndex is { })
-            {
-                storage.VKTokens.ToList().Add(options.TokenValue);
-                Storage.Write(storage);
-            }
-            else storage.VKTokens.ToList()[(int)options.TokenIndex] = options.TokenValue;
+                storage.VKTokens[(int)options.TokenIndex] = options.TokenValue;
+            else
+                storage.VKTokens.Add(options.TokenValue);
 
+            Storage.Write(storage);
             return Task.CompletedTask;
         }
         #endregion

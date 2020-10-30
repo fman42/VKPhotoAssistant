@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace VKPhotoAssistant.Interfaces.Storage
 {
@@ -7,6 +6,6 @@ namespace VKPhotoAssistant.Interfaces.Storage
     {
         public string CurrentVKToken { get; set; } = string.Empty;
 
-        public IEnumerable<string> VKTokens { get; set; } = Enumerable.Empty<string>();
+        public List<string> VKTokens { get; set; } = new List<string>();
     }
 }

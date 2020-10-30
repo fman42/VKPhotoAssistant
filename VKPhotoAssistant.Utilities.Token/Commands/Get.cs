@@ -33,14 +33,14 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
 
         private void GetAllTokens()
         {
-            List<string> tokens = Storage.Read().VKTokens.ToList();
+            List<string> tokens = Storage.Read().VKTokens;
             for (int i = 0; i < tokens.Count(); i++)
                 Console.WriteLine($"{i}: " + $"{tokens[i]}");
         }
 
         private void GetTokenByIndex(int index)
         {
-            List<string> tokens = Storage.Read().VKTokens.ToList();
+            List<string> tokens = Storage.Read().VKTokens;
             if (tokens.Count() >= index)
                 Console.WriteLine(tokens[index]);
 

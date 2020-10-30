@@ -29,7 +29,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
 
             if (storage.VKTokens.Count() >= options.Index)
             {
-                storage.VKTokens.ToList().RemoveAt(options.Index);
+                storage.VKTokens.RemoveAt(options.Index);
                 Storage.Write(storage);
 
                 Console.WriteLine($"Токен с индексом {options.Index} был удален из хранилища");
