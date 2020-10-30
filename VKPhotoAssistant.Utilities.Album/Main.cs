@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Base;
 
@@ -12,11 +11,11 @@ namespace VKPhotoAssistant.Utilities.Album
         #endregion
 
         #region Action
-        public async Task DefineCommandAsync(string commandName, IEnumerable<string> args)
+        public void DefineCommand(string commandName, IEnumerable<string> args)
         {
             ICommand command = TryCallCommand(commandName);
             if (command is { })
-                await command.ExecuteAsync(args);
+                command.ExecuteAsync(args);
         }
         #endregion
     }

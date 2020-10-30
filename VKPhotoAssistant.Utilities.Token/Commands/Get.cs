@@ -20,26 +20,30 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
-            async (options) => {
-                if (options.Index is { })
-                    await GetTokenByIndex((int) options.Index);
-                else await GetAllTokens();
-            }
-        );
+        public void ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, Action);
 
-        private async Task GetAllTokens()
+        private Task Action(GetTokenOptions options)
+        {
+            if (options.Index is { })
+                GetTokenByIndex((int)options.Index);
+            else GetAllTokens();
+
+            return Task.CompletedTask;
+        }
+
+        private void GetAllTokens()
         {
             List<string> tokens = Storage.Read().VKTokens.ToList();
             for (int i = 0; i < tokens.Count(); i++)
                 Console.WriteLine($"{i}: " + $"{tokens[i]}");
         }
 
-        private async Task GetTokenByIndex(int index)
+        private void GetTokenByIndex(int index)
         {
             List<string> tokens = Storage.Read().VKTokens.ToList();
             if (tokens.Count() >= index)
                 Console.WriteLine(tokens[index]);
+
             else Console.WriteLine("Токен не найден");
         }
         #endregion

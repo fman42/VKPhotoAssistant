@@ -18,7 +18,7 @@ namespace VKPhotoAssistant.Utilities.Base
         {
             var x = Assembly.GetCallingAssembly().GetTypes();
             
-            Type? commandClassName = Assembly.GetCallingAssembly().GetTypes()
+            Type commandClassName = Assembly.GetCallingAssembly().GetTypes()
                 .FirstOrDefault(x => command.Equals(x.Name, StringComparison.CurrentCultureIgnoreCase)
                    && x.Namespace.Contains(CommandNameSpaceFragment)
                 );

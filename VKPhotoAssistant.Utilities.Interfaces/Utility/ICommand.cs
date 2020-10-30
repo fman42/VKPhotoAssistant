@@ -5,6 +5,6 @@ namespace VKPhotoAssistant.Interfaces.Utility
 {
     public interface ICommand
     {
-        Task ExecuteAsync(IEnumerable<string> args);
+        void ExecuteAsync(IEnumerable<string> args);
     }
 }

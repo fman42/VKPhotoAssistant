@@ -31,7 +31,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, Action);
+        public void ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, Action);
 
         private Task Action(DownloadOptions options)
         {

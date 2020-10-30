@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Storage;
 using VKPhotoAssistant.Interfaces.Storage;
@@ -20,7 +19,7 @@ namespace VKPhotoAssistant
         #endregion
 
         #region Entry Point
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             JsonStorage storage = JsonStorage.GetInstance();
             if (!storage.Exists())
@@ -28,12 +27,12 @@ namespace VKPhotoAssistant
 
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
-                await new MainUtility.Main().DefineCommandAsync("Help", args);
+                new MainUtility.Main().DefineCommand("Help", args);
                 return;
             }
 
             IUtility utility = (IUtility) Activator.CreateInstance(UtilitiesDictionary[args[0]]);
-            await utility.DefineCommandAsync(args[1], args.Skip(2));
+            utility.DefineCommand(args[1], args.Skip(2));
         }
         #endregion
     }

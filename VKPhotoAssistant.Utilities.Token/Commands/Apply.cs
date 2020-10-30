@@ -21,20 +21,23 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
-            async (options) => {
-                MainStorage storage = Storage.Read();
-                List<string> tokens = storage.VKTokens.ToList();
+        public void ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, Action);
 
-                if (tokens.Count() >= options.Index)
-                {
-                    storage.CurrentVKToken = tokens[options.Index];
-                    Storage.Write(storage);
-                    Console.WriteLine("Вы успешно применили токен в хранилище");
-                }
-                else Console.WriteLine("Токен в хранилище не найден");
+        private Task Action(ApplyTokenOptions options)
+        {
+            MainStorage storage = Storage.Read();
+            List<string> tokens = storage.VKTokens.ToList();
+
+            if (tokens.Count() >= options.Index)
+            {
+                storage.CurrentVKToken = tokens[options.Index];
+                Storage.Write(storage);
+                Console.WriteLine("Вы успешно применили токен в хранилище");
             }
-        );
+            else Console.WriteLine("Токен в хранилище не найден");
+
+            return Task.CompletedTask;
+        }
         #endregion
     }
 }

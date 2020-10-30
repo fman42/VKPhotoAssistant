@@ -7,6 +7,6 @@ namespace VKPhotoAssistant.Interfaces.Utility
     {
         string Name { get; }
 
-        Task DefineCommandAsync(string commandName, IEnumerable<string> args);
+        void DefineCommand(string commandName, IEnumerable<string> args);
     }
 }

@@ -20,9 +20,9 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, SetValueToToken);
+        public void ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args, SetValueToToken);
 
-        private async Task SetValueToToken(SetTokenOptions options)
+        private Task SetValueToToken(SetTokenOptions options)
         {
             MainStorage storage = Storage.Read();
 
@@ -32,6 +32,8 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
                 Storage.Write(storage);
             }
             else storage.VKTokens.ToList()[(int)options.TokenIndex] = options.TokenValue;
+
+            return Task.CompletedTask;
         }
         #endregion
     }
