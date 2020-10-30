@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using VKPhotoAssistant.Utilities.Main.Commands;
+﻿using System;
+using System.Collections.Generic;
 using VKPhotoAssistant.Interfaces.Utility;
 
 namespace VKPhotoAssistant.Utilities.Main
@@ -8,10 +8,13 @@ namespace VKPhotoAssistant.Utilities.Main
     {
         #region Var
         public string Name => "VKPhotoAssistant";
+
+        public string HelpMessage => "vk --help | Получить информацию по работе с хранилищем токенов \n" +
+            "album --help | Получить информацию по работе с альбомами ВК";
         #endregion
 
         #region Methods
-        public void DefineCommand(string commandName, IEnumerable<string> args) => new Help().ExecuteAsync(args);
+        public void DefineCommand(string commandName, IEnumerable<string> args) => Console.WriteLine(HelpMessage);
         #endregion
     }
 }

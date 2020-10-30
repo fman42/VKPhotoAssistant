@@ -7,8 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\VKPhotoAssistant.Base\VKPhotoAssistant.Utilities.Base.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Options\" />
-  </ItemGroup>
 </Project>
