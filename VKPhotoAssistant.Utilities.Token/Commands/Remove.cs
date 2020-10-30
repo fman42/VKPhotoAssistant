@@ -1,33 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using VKPhotoAssistant.Interfaces.Storage;
 using VKPhotoAssistant.Interfaces.Utility;
+using VKPhotoAssistant.Storage;
 using VKPhotoAssistant.Utilities.Base;
 using VKPhotoAssistant.Utilities.VKToken.Options;
-using VKPhotoAssistant.Utilities.VKToken.Tools.Storage;
 
 namespace VKPhotoAssistant.Utilities.VKToken.Commands
 {
     internal class Remove : BaseCommandParser<RemoveTokenOptions>, ICommand
     {
         #region Vars
-        private TokenStorage Storage { get; }
+        private JsonStorage Storage { get; }
         #endregion
 
         #region Init
-        public Remove() => Storage = new TokenStorage();
+        public Remove() => Storage = new JsonStorage();
         #endregion
 
         #region Methods
         public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
-                string fileIndexToName = $"{options.Index}";
+                MainStorage storage = Storage.Read();
 
-                if (Storage.FileExists(fileIndexToName))
+                if (storage.VKTokens.Count() >= options.Index)
                 {
-                    Storage.DeleteFile(fileIndexToName);
+                    storage.VKTokens.ToList().RemoveAt(options.Index);
+                    Storage.Write(storage);
+
                     Console.WriteLine($"Токен с индексом {options.Index} был удален из хранилища");
-                } else {
+                } else
+                {
                     Console.WriteLine("Такой токен не существует");
                 }
             }

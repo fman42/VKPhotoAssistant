@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using VKPhotoAssistant.Interfaces.Storage;
 using VKPhotoAssistant.Interfaces.Utility;
+using VKPhotoAssistant.Storage;
 using VKPhotoAssistant.Utilities.Base;
 using VKPhotoAssistant.Utilities.VKToken.Options;
-using VKPhotoAssistant.Utilities.VKToken.Tools.Storage;
 
 namespace VKPhotoAssistant.Utilities.VKToken.Commands
 {
     internal class Set : BaseCommandParser<SetTokenOptions>, ICommand
     {
         #region Vars
-        private TokenStorage Storage { get; }
+        private JsonStorage Storage { get; }
         #endregion
 
         #region Init
-        public Set() => Storage = new TokenStorage();
+        public Set() => Storage = JsonStorage.GetInstance();
         #endregion
 
         #region Methods
@@ -22,15 +24,14 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
 
         private async Task SetValueToToken(SetTokenOptions options)
         {
-            if (options.TokenIndex is { })
-                await Storage.WriteValueInFileAsync($"{options.TokenIndex}", options.TokenValue);
-            else await CreateNewToken(options.TokenValue);
-        }
+            MainStorage storage = Storage.Read();
 
-        private async Task CreateNewToken(string value)
-        {
-            int currentCountFiles = Storage.GetStorageFiles().Count;
-            await Storage.WriteValueInFileAsync($"{currentCountFiles}", value);
+            if (options.TokenIndex is { })
+            {
+                storage.VKTokens.ToList().Add(options.TokenValue);
+                Storage.Write(storage);
+            }
+            else storage.VKTokens.ToList()[(int)options.TokenIndex] = options.TokenValue;
         }
         #endregion
     }

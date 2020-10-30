@@ -22,7 +22,6 @@ namespace VKPhotoAssistant.Storage
         public void Write(MainStorage body)
         {
             string bodyToJson = JsonConvert.SerializeObject(body);
-            File.Create(JSON_STORAGE_NAME);
 
             using (StreamWriter writer = new StreamWriter(JSON_STORAGE_NAME))
                 writer.Write(bodyToJson);
