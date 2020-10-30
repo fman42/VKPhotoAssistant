@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using VKPhotoAssistant.Interfaces.Utility;
+using VKPhotoAssistant.Storage;
+using VKPhotoAssistant.Interfaces.Storage;
 using MainUtility = VKPhotoAssistant.Utilities.Main;
 
 namespace VKPhotoAssistant
@@ -22,7 +22,9 @@ namespace VKPhotoAssistant
         #region Entry Point
         static async Task Main(string[] args)
         {
-            IConfiguration configuration = InitConfigurationFile();
+            JsonStorage storage = JsonStorage.GetInstance();
+            if (!storage.Exists())
+                storage.Write(new MainStorage());
 
             if (args.Length < 2 || !UtilitiesDictionary.ContainsKey(args[0]))
             {
@@ -30,16 +32,8 @@ namespace VKPhotoAssistant
                 return;
             }
 
-            IUtility utility = (IUtility) Activator.CreateInstance(UtilitiesDictionary[args[0]], configuration);
+            IUtility utility = (IUtility) Activator.CreateInstance(UtilitiesDictionary[args[0]]);
             await utility.DefineCommandAsync(args[1], args.Skip(2));
-        }
-
-        private static IConfiguration InitConfigurationFile()
-        {
-            return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
         }
         #endregion
     }

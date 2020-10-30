@@ -12,8 +12,6 @@ using VkNet.Model.RequestParams;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Album.Options;
 using VKPhotoAssistant.Utilities.Base;
-using Microsoft.Extensions.Configuration;
-
 namespace VKPhotoAssistant.Utilities.Album.Commands
 {
     internal class Download : BaseCommandParser<DownloadOptions>, ICommand
@@ -25,18 +23,12 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private WebClient Client { get; } = new WebClient();
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
+        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
-                if (configuration["VKToken"].ToString().Length == 0)
-                {
-                    Console.WriteLine("Token is null");
-                    return;
-                }
-
-                API.Authorize(new ApiAuthParams()
+                /*API.Authorize(new ApiAuthParams()
                 {
                     AccessToken = configuration["VKToken"]
-                });
+                });*/
 
                 DownloadOptions = options;
                 DownloadAlbum();

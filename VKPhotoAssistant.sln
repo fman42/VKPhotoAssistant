@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Utilities.Main", "VKPhotoAssistant.Utilities.Main\VKPhotoAssistant.Utilities.Main.csproj", "{0EBF97CE-9AD8-4A75-BD97-41FCAACAAE88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKPhotoAssistant.Storage", "VKPhotoAssistant.Storage\VKPhotoAssistant.Storage.csproj", "{97B1BC33-119F-4564-8445-C857552F289C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +45,9 @@ Global
 		{0EBF97CE-9AD8-4A75-BD97-41FCAACAAE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EBF97CE-9AD8-4A75-BD97-41FCAACAAE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EBF97CE-9AD8-4A75-BD97-41FCAACAAE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B1BC33-119F-4564-8445-C857552F289C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B1BC33-119F-4564-8445-C857552F289C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B1BC33-119F-4564-8445-C857552F289C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B1BC33-119F-4564-8445-C857552F289C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

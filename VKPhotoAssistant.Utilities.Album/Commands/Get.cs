@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using VkNet;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -16,18 +15,14 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private VkApi API { get; set; } = new VkApi();
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
+        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
-                if (configuration["VKToken"].ToString().Length == 0)
-                {
-                    Console.WriteLine("Token is null");
-                    return;
-                }
-
+            
+                /*
                 API.Authorize(new ApiAuthParams()
                 {
                     AccessToken = configuration["VKToken"]
-                });
+                });*/
 
                 if (options.AlbumId is null)
                     GetAlbums();

@@ -10,11 +10,6 @@
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Token\VKPhotoAssistant.Utilities.VKToken.csproj" />
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Album\VKPhotoAssistant.Utilities.Album.csproj" />
     <ProjectReference Include="..\VKPhotoAssistant.Utilities.Interfaces\VKPhotoAssistant.Interfaces.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="appsettings.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="appsettings.json" />
+    <ProjectReference Include="..\VKPhotoAssistant.Storage\VKPhotoAssistant.Storage.csproj" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@ using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Utilities.Base;
 using VKPhotoAssistant.Utilities.VKToken.Options;
 using VKPhotoAssistant.Utilities.VKToken.Tools.Storage;
-using Microsoft.Extensions.Configuration;
 
 namespace VKPhotoAssistant.Utilities.VKToken.Commands
 {
@@ -20,12 +19,12 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
         #endregion
 
         #region Methods
-        public async Task ExecuteAsync(IEnumerable<string> args, IConfiguration configuration) => TryParseAsync(args,
+        public async Task ExecuteAsync(IEnumerable<string> args) => TryParseAsync(args,
             async (options) => {
                 string fileIndexToName = $"{options.Index}";
                 if (Storage.FileExists(fileIndexToName))
                 {
-                    configuration["VKToken"] = await Storage.ReadFileAsync(fileIndexToName);
+                    //configuration["VKToken"] = await Storage.ReadFileAsync(fileIndexToName);
                     Console.WriteLine("Вы успешно применили токен в хранилище");
                 }
                 else Console.WriteLine("Токен в хранилище не найден");
