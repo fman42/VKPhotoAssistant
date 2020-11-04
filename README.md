@@ -44,8 +44,11 @@ Start download photos from album by albumId.
 VKPhotoAssistant.exe album download [albumId] --limit [limit] --offset [offset]
 ```
 **Parameters**
+
 **albumId** - albumId from API(to use **album get**)
+
 **limit** - set limit for download some photos(Max: **1000**. Defaultl: **100**)
+
 **offset** - set offset from 0 index (Default: **0**)
 
 
