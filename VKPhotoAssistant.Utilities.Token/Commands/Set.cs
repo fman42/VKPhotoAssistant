@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using VKPhotoAssistant.Interfaces.Storage;
 using VKPhotoAssistant.Interfaces.Utility;
 using VKPhotoAssistant.Storage;
@@ -23,15 +27,36 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
 
         private Task SetValueToToken(SetTokenOptions options)
         {
+            string token = ParseToken(options.TokenValue);
+            if (string.IsNullOrEmpty(token))
+            {
+                Console.WriteLine();
+                return Task.CompletedTask;
+            }
+
+            UpdateStorage(options.TokenIndex, token);
+            return Task.CompletedTask;
+        }
+
+        private void UpdateStorage(int? index, string token)
+        {
             MainStorage storage = Storage.Read();
 
-            if (options.TokenIndex is { })
-                storage.VKTokens[(int)options.TokenIndex] = options.TokenValue;
+            if (index is { })
+                storage.VKTokens[(int)index] = token;
             else
-                storage.VKTokens.Add(options.TokenValue);
+                storage.VKTokens.Add(token);
 
             Storage.Write(storage);
-            return Task.CompletedTask;
+        }
+
+        private static string ParseToken(string token)
+        {
+            if (token.Length == 64)
+                return token;
+
+            NameValueCollection queryParamsCollection = HttpUtility.ParseQueryString(token);
+            return queryParamsCollection.AllKeys.Contains("access_token") ? queryParamsCollection["access_token"] : null;
         }
         #endregion
     }
