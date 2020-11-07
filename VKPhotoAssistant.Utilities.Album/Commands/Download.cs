@@ -54,8 +54,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
         private void DownloadAlbum()
         {
-            string directory = TryGetDownloadedFolderName(DownloadOptions.AlbumId);
-            
+            string path = GetDownloadedDirectoryPath();
             PhotoGetParams getParams = new PhotoGetParams()
             {
                 AlbumId = PhotoAlbumType.Id(DownloadOptions.AlbumId),
@@ -66,21 +65,37 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
             foreach (Photo photo in API.Photo.Get(getParams))
             {
                 Console.WriteLine($"Файл {photo.Id} начал скачиваться в локальное хранилище");
-                Client.DownloadFile(photo.Sizes.Last().Url, Path.Combine(directory, photo.Id + ".jpg"));
+                Client.DownloadFile(photo.Sizes.Last().Url, Path.Combine(path, photo.Id + ".jpg"));
             }
         }
 
-        private string TryGetDownloadedFolderName(long id)
+        private string GetDownloadedDirectoryPath()
         {
-            VkCollection<PhotoAlbum> album = API.Photo.GetAlbums(new PhotoGetAlbumsParams() {
+            VkCollection<PhotoAlbum> album = API.Photo.GetAlbums(new PhotoGetAlbumsParams()
+            {
                 AlbumIds = new long[] { DownloadOptions.AlbumId }
             });
-            string directory = album.First().Title;
+            string albumTitle = album.First().Title;
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            if (!string.IsNullOrEmpty(DownloadOptions.Output) && IsValidPath(DownloadOptions.Output))
+                return Path.Combine(DownloadOptions.Output, albumTitle);
 
-            return directory;
+            if (!Directory.Exists(albumTitle))
+                Directory.CreateDirectory(albumTitle);
+
+            return albumTitle;
+        }
+
+        private static bool IsValidPath(string path)
+        {
+            try
+            {
+                string fullPath = Path.GetFullPath(path);
+                return true;
+            } catch
+            {
+                return false;
+            }
         }
         #endregion
     }

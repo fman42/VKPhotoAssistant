@@ -12,5 +12,8 @@ namespace VKPhotoAssistant.Utilities.Album.Options
    
         [Option("offset", Required = false, Default = 0)]
         public int? Offset { get; set; }
+
+        [Option("output", Required = false, Default = null)]
+        public string Output { get; set; }
     }
 }
