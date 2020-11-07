@@ -30,7 +30,7 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
             string token = ParseToken(options.TokenValue);
             if (string.IsNullOrEmpty(token))
             {
-                Console.WriteLine();
+                Console.WriteLine("Вы ввели неверный токен");
                 return Task.CompletedTask;
             }
 
