@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using VKPhotoAssistant.Interfaces.Storage;
@@ -52,11 +51,14 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
 
         private static string ParseToken(string token)
         {
-            if (token.Length == 64)
+            if (token.Length == 85)
                 return token;
 
             NameValueCollection queryParamsCollection = HttpUtility.ParseQueryString(token);
-            return queryParamsCollection.AllKeys.Contains("access_token") ? queryParamsCollection["access_token"] : null;
+            if (queryParamsCollection.Count == 0)
+                return null;
+
+            return queryParamsCollection[0].TrimStart('#');
         }
         #endregion
     }

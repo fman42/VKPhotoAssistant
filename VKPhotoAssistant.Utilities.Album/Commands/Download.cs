@@ -55,6 +55,8 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private void DownloadAlbum()
         {
             string path = GetDownloadedDirectoryPath();
+            Console.WriteLine(path);
+
             PhotoGetParams getParams = new PhotoGetParams()
             {
                 AlbumId = PhotoAlbumType.Id(DownloadOptions.AlbumId),
@@ -76,14 +78,15 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
                 AlbumIds = new long[] { DownloadOptions.AlbumId }
             });
             string albumTitle = album.First().Title;
+            string directoryPath = albumTitle;
 
             if (!string.IsNullOrEmpty(DownloadOptions.Output) && IsValidPath(DownloadOptions.Output))
-                return Path.Combine(DownloadOptions.Output, albumTitle);
+                directoryPath = Path.Combine(DownloadOptions.Output, albumTitle);
 
-            if (!Directory.Exists(albumTitle))
-                Directory.CreateDirectory(albumTitle);
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
 
-            return albumTitle;
+            return directoryPath;
         }
 
         private static bool IsValidPath(string path)
