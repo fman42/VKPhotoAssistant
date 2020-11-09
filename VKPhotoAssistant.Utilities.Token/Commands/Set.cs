@@ -14,11 +14,17 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
     internal class Set : BaseCommandParser<SetTokenOptions>, ICommand
     {
         #region Vars
-        private JsonStorage Storage { get; }
+        private JsonStorage StorageInstance { get; }
+
+        private MainStorage MainStorage { get; }
         #endregion
 
         #region Init
-        public Set() => Storage = JsonStorage.GetInstance();
+        public Set()
+        {
+            StorageInstance = JsonStorage.GetInstance();
+            MainStorage = StorageInstance.Read();
+        }
         #endregion
 
         #region Methods
@@ -33,20 +39,24 @@ namespace VKPhotoAssistant.Utilities.VKToken.Commands
                 return Task.CompletedTask;
             }
 
+            if (MainStorage.VKTokens.IndexOf(token) != -1)
+            {
+                Console.WriteLine("Данный токен уже находится в хранилище");
+                return Task.CompletedTask;
+            }
+
             UpdateStorage(options.TokenIndex, token);
             return Task.CompletedTask;
         }
 
         private void UpdateStorage(int? index, string token)
         {
-            MainStorage storage = Storage.Read();
-
             if (index is { })
-                storage.VKTokens[(int)index] = token;
+                MainStorage.VKTokens[(int)index] = token;
             else
-                storage.VKTokens.Add(token);
+                MainStorage.VKTokens.Add(token);
 
-            Storage.Write(storage);
+            StorageInstance.Write(MainStorage);
         }
 
         private static string ParseToken(string token)
