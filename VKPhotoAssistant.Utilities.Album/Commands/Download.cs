@@ -55,7 +55,7 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
         private void DownloadAlbum()
         {
             string path = GetDownloadedDirectoryPath();
-            Console.WriteLine(path);
+            uint photosDownloaded = 0;
 
             PhotoGetParams getParams = new PhotoGetParams()
             {
@@ -66,9 +66,11 @@ namespace VKPhotoAssistant.Utilities.Album.Commands
 
             foreach (Photo photo in API.Photo.Get(getParams))
             {
-                Console.WriteLine($"Файл {photo.Id} начал скачиваться в локальное хранилище");
+                photosDownloaded++;
                 Client.DownloadFile(photo.Sizes.Last().Url, Path.Combine(path, photo.Id + ".jpg"));
             }
+
+            Console.WriteLine($"Всего скачано фотографий: {photosDownloaded}");
         }
 
         private string GetDownloadedDirectoryPath()
